@@ -2,9 +2,9 @@ package api
 
 import (
 	"github.com/gogf/gf/net/ghttp"
-	"passport/library/context"
-	"passport/library/logs"
-	"passport/library/response"
+	"github.com/njun10/golibrary/context"
+	"github.com/njun10/golibrary/logs"
+	"github.com/njun10/golibrary/response"
 )
 var BaseApi = new(Base)
 var ContextInfo = new(context.ContextM)

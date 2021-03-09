@@ -2,8 +2,8 @@ package response
 
 import (
 	"github.com/gogf/gf/net/ghttp"
-	"passport/library/context"
-	"passport/library/logs"
+	"github.com/njun10/golibrary/context"
+	"github.com/njun10/golibrary/logs"
 )
 
 
