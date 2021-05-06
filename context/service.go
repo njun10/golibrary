@@ -14,7 +14,7 @@ type contextService struct{}
 // 初始化上下文对象指针到上下文对象中，以便后续的请求流程中可以修改。
 func (s *contextService) Init(r *ghttp.Request) {
 	c := new(ContextM)
-	c.Res = new(Response)
+	c.Res = new(struct{})
 	c.Agent = new(ContextAgent)
 	c.Params = new(struct{})
 	c.Data = new(struct{})
