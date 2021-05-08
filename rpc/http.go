@@ -51,6 +51,13 @@ func (s *HttpRpcInput) Request() {
 			res = client.GetContent(s.Url)
 		}
 		break
+	case "PUT":
+		if s.Data != nil {
+			res = client.PutContent(s.Url, s.Data)
+		} else {
+			res = client.PutContent(s.Url)
+		}
+		break
 	default:
 
 	}
