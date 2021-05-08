@@ -11,19 +11,19 @@ const (
 
 // 请求上下文结构
 type ContextM struct {
-	Error int `json:"error"`
-	Msg string `json:"msg"`
-	Agent    *ContextAgent  `json:"agent"` // 上下文用户信息
-	Params    interface{} `json:"params"`
-	Data    interface{} `json:"data"`
-	Res     interface{} `json:"res"`
+	Error  int           `json:"error"`
+	Msg    string        `json:"msg"`
+	Agent  *ContextAgent `json:"agent"` // 上下文用户信息
+	Params interface{}   `json:"params"`
+	Data   map[string]interface{}   `json:"data"`
+	Res    interface{}   `json:"res"`
 }
 
 // 请求上下文中的用户信息
 type ContextAgent struct {
 	AgentId int64
-	PlatId int
-	Uid int64
+	PlatId  int
+	Uid     int64
 	Channel string
 	Version string
 }

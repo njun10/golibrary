@@ -6,7 +6,6 @@ import (
 	"github.com/njun10/golibrary/logs"
 )
 
-
 // 标准返回结果数据结构封装。
 func (s *HttpRpcInput) Request() {
 	var res = ""
@@ -17,12 +16,12 @@ func (s *HttpRpcInput) Request() {
 	client = client.Timeout(s.Timeout)
 
 	// set cookie
-	if len(s.Cookie)>0 {
+	if len(s.Cookie) > 0 {
 		client = client.Cookie(s.Cookie)
 	}
 
 	// set header
-	if len(s.Header)>0 {
+	if len(s.Header) > 0 {
 		client = client.Header(s.Header)
 	}
 
@@ -38,24 +37,22 @@ func (s *HttpRpcInput) Request() {
 	client = client.Ctx(s.Ctx)
 	// send
 	switch s.Method {
-		case "POST":
-			if s.Data != nil {
-				res = client.PostContent(s.Url, s.Data)
-			}else{
-				res = client.PostContent(s.Url)
-			}
-			break
-		case "GET":
-			if s.Data != nil {
-				res = client.GetContent(s.Url, s.Data)
-			}else{
-				res = client.GetContent(s.Url)
-			}
-			break
-		default:
+	case "POST":
+		if s.Data != nil {
+			res = client.PostContent(s.Url, s.Data)
+		} else {
+			res = client.PostContent(s.Url)
+		}
+		break
+	case "GET":
+		if s.Data != nil {
+			res = client.GetContent(s.Url, s.Data)
+		} else {
+			res = client.GetContent(s.Url)
+		}
+		break
+	default:
 
 	}
 	logs.Write.Async().Info(s, res)
 }
-
-

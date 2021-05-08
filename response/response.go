@@ -6,7 +6,6 @@ import (
 	"github.com/njun10/golibrary/logs"
 )
 
-
 // 标准返回结果数据结构封装。
 func Json(r *ghttp.Request, code int, message string, data ...interface{}) {
 	responseData := interface{}(nil)
@@ -29,4 +28,3 @@ func JsonExit(r *ghttp.Request, err int, msg string, data ...interface{}) {
 	logs.Write.Async().Error(r.GetCtxVar(logs.Id), context.ContextSer.Get(r.Context()))
 	r.Exit()
 }
-

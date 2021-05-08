@@ -2,7 +2,7 @@ package api
 
 import "github.com/gogf/gf/net/ghttp"
 
-type Baseflow  interface{
+type Baseflow interface {
 	Context(*ghttp.Request)
 	DealParams(*ghttp.Request)
 	Prepare(*ghttp.Request)

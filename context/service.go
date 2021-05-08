@@ -17,7 +17,7 @@ func (s *contextService) Init(r *ghttp.Request) {
 	c.Res = new(struct{})
 	c.Agent = new(ContextAgent)
 	c.Params = new(struct{})
-	c.Data = new(struct{})
+	c.Data = make(map[string]interface{})
 	r.SetCtxVar(ContextKey, c)
 }
 
@@ -55,15 +55,15 @@ func (s *contextService) SetResData(ctx context.Context, data interface{}) {
 }
 
 // 向返回的data加入上下文中 添加数据
-func (s *contextService) AddResData(ctx context.Context, key string ,add interface{}) {
+func (s *contextService) AddResData(ctx context.Context, key string, add interface{}) {
 	addmap := gconv.Map(s.Get(ctx).Res)
 	addmap[key] = add
 	s.Get(ctx).Res = addmap
 }
+
 // 向context的data加入上下文中 添加数据
-func (s *contextService) AddContextData(ctx context.Context, key string ,add interface{}) {
+func (s *contextService) AddContextData(ctx context.Context, key string, add interface{}) {
 	addmap := gconv.Map(s.Get(ctx).Data)
 	addmap[key] = add
 	s.Get(ctx).Data = addmap
 }
-
