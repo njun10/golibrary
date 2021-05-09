@@ -7,8 +7,8 @@ import (
 )
 
 // 标准返回结果数据结构封装。
-func (s *HttpRpcInput) Request() {
-	var res = ""
+func (s *HttpRpcInput) Request() string {
+	var res = "empty"
 	// Add user info.
 	client := g.Client().Use(ghttp.MiddlewareClientTracing)
 
@@ -62,4 +62,5 @@ func (s *HttpRpcInput) Request() {
 
 	}
 	logs.Write.Async().Info(s, res)
+	return res
 }
