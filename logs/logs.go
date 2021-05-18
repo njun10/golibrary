@@ -5,7 +5,6 @@ import (
 	"github.com/gogf/gf/net/ghttp"
 	"github.com/gogf/gf/os/glog"
 	"github.com/gogf/gf/util/gconv"
-	"github.com/njun10/golibrary/logs"
 	"github.com/njun10/golibrary/context"
 	"time"
 )
@@ -22,16 +21,16 @@ func GenLogid() string {
 	return NewObjectId().Hex()
 }
 func Noti(r *ghttp.Request) {
-	Write.Async().Notice(r.GetCtxVar(logs.Id), getLogInfo(r))
+	Write.Async().Notice(r.GetCtxVar(Id), getLogInfo(r))
 }
 
 func Error(r *ghttp.Request) {
-	Write.Async().Error(r.GetCtxVar(logs.Id), getLogInfo(r))
+	Write.Async().Error(r.GetCtxVar(Id), getLogInfo(r))
 }
 
 
 func Info(r *ghttp.Request, data interface{}) {
-	Write.Async().Info(r.GetCtxVar(logs.Id), data)
+	Write.Async().Info(r.GetCtxVar(Id), data)
 }
 
 func getLogInfo(r *ghttp.Request) interface{} {
