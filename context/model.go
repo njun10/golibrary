@@ -17,6 +17,7 @@ type ContextM struct {
 	Params interface{}   `json:"params"`
 	Data   map[string]interface{}   `json:"data"`
 	Res    interface{}   `json:"res"`
+	Time   int64         `json:"time"` // 请求耗时
 }
 
 // 请求上下文中的用户信息

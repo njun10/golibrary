@@ -3,12 +3,16 @@ package rpc
 import (
 	"github.com/gogf/gf/frame/g"
 	"github.com/gogf/gf/net/ghttp"
+	"time"
 	"github.com/njun10/golibrary/logs"
 )
 
 // 标准返回结果数据结构封装。
-func (s *HttpRpcInput) Request() string {
-	var res = "empty"
+func (s *HttpRpcInput) Request(r *ghttp.Request) string {
+	var log HttpRpcLog
+	log.Input = s
+	log.Res = "empty"
+	start := time.Now()
 	// Add user info.
 	client := g.Client().Use(ghttp.MiddlewareClientTracing)
 
@@ -39,28 +43,29 @@ func (s *HttpRpcInput) Request() string {
 	switch s.Method {
 	case "POST":
 		if s.Data != nil {
-			res = client.PostContent(s.Url, s.Data)
+			log.Res = client.PostContent(s.Url, s.Data)
 		} else {
-			res = client.PostContent(s.Url)
+			log.Res = client.PostContent(s.Url)
 		}
 		break
 	case "GET":
 		if s.Data != nil {
-			res = client.GetContent(s.Url, s.Data)
+			log.Res = client.GetContent(s.Url, s.Data)
 		} else {
-			res = client.GetContent(s.Url)
+			log.Res = client.GetContent(s.Url)
 		}
 		break
 	case "PUT":
 		if s.Data != nil {
-			res = client.PutContent(s.Url, s.Data)
+			log.Res = client.PutContent(s.Url, s.Data)
 		} else {
-			res = client.PutContent(s.Url)
+			log.Res = client.PutContent(s.Url)
 		}
 		break
 	default:
 
 	}
-	logs.Write.Async().Info(s, res)
-	return res
+	log.Time = time.Since(start).Milliseconds()
+	logs.Info(r, log)
+	return log.Res
 }

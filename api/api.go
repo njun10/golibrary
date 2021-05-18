@@ -59,5 +59,5 @@ func (b *Base) Response(r *ghttp.Request) {
 
 // 处理日志
 func (b *Base) Logger(r *ghttp.Request) {
-	logs.Write.Async().Notice(r.GetCtxVar(logs.Id), context.ContextSer.Get(r.Context()))
+	logs.Noti(r)
 }

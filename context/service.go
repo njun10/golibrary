@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/gogf/gf/net/ghttp"
 	"github.com/gogf/gf/util/gconv"
+	"time"
 )
 
 // 上下文管理服务
@@ -18,6 +19,7 @@ func (s *contextService) Init(r *ghttp.Request) {
 	c.Agent = new(ContextAgent)
 	c.Params = new(struct{})
 	c.Data = make(map[string]interface{})
+	c.Data["start"] = time.Now()
 	r.SetCtxVar(ContextKey, c)
 }
 

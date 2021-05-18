@@ -25,6 +25,6 @@ func Json(r *ghttp.Request, code int, message string, data ...interface{}) {
 // 返回JSON数据并退出当前HTTP执行函数。
 func JsonExit(r *ghttp.Request, err int, msg string, data ...interface{}) {
 	Json(r, err, msg, data...)
-	logs.Write.Async().Error(r.GetCtxVar(logs.Id), context.ContextSer.Get(r.Context()))
+	logs.Error(r)
 	r.Exit()
 }

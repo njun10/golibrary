@@ -8,17 +8,24 @@ import (
 
 // http 请求的输入参数
 type HttpRpcInput struct {
-	Url           string
-	Data          interface{}
-	Header        map[string]string
-	Cookie        map[string]string
-	Ctx           context.Context
-	Timeout       time.Duration
-	Retry         int
-	RetryInterval time.Duration
-	Method        string
-	AuthName      string
-	AuthPass      string
+	Url           string `json:"url"`
+	Data          interface{} `json:"data"`
+	Header        map[string]string `json:"header"`
+	Cookie        map[string]string `json:"cookie"`
+	Ctx           context.Context `json:"ctx"`
+	Timeout       time.Duration `json:"timeout"`
+	Retry         int `json:"retry"`
+	RetryInterval time.Duration `json:"retryinterval"`
+	Method        string `json:"method"`
+	AuthName      string `json:"authname"`
+	AuthPass      string `json:"authpass"`
+}
+
+// http 请求的输入参数
+type HttpRpcLog struct {
+	Input    *HttpRpcInput `json:"input"`
+	Res    string `json:"res"`
+	Time int64 `json:"time"`
 }
 
 func Init() *HttpRpcInput {
