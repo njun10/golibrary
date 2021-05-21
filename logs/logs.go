@@ -21,16 +21,16 @@ func GenLogid() string {
 	return NewObjectId().Hex()
 }
 func Noti(r *ghttp.Request) {
-	Write.Async().Notice(r.GetCtxVar(Id), getLogInfo(r))
+	Write.Async().Notice(r.GetCtxVar(Id), r.RequestURI, getLogInfo(r))
 }
 
 func Error(r *ghttp.Request) {
-	Write.Async().Error(r.GetCtxVar(Id), getLogInfo(r))
+	Write.Async().Error(r.GetCtxVar(Id), r.RequestURI, getLogInfo(r))
 }
 
 
 func Info(r *ghttp.Request, data interface{}) {
-	Write.Async().Info(r.GetCtxVar(Id), data)
+	Write.Async().Info(r.GetCtxVar(Id), r.RequestURI, data)
 }
 
 func getLogInfo(r *ghttp.Request) interface{} {
