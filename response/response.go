@@ -2,6 +2,7 @@ package response
 
 import (
 	"github.com/gogf/gf/net/ghttp"
+	"github.com/gogf/gf/util/gconv"
 	"github.com/njun10/golibrary/context"
 	"github.com/njun10/golibrary/logs"
 )
@@ -18,6 +19,7 @@ func Json(r *ghttp.Request, code int, message string, data ...interface{}) {
 		Code:    code,
 		Message: message,
 		Data:    responseData,
+		LogId:   gconv.String(r.GetCtxVar(logs.Id)),
 	})
 	context.ContextSer.SetErrMsg(r.Context(), code, message)
 }

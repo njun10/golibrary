@@ -20,6 +20,7 @@ func (s *contextService) Init(r *ghttp.Request) {
 	c.Params = new(struct{})
 	c.Data = make(map[string]interface{})
 	c.Data["start"] = time.Now()
+	r.ParseQuery(&c.Agent)
 	r.SetCtxVar(ContextKey, c)
 }
 
