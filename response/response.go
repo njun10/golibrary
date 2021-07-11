@@ -30,3 +30,7 @@ func JsonExit(r *ghttp.Request, err int, msg string, data ...interface{}) {
 	logs.Error(r)
 	r.Exit()
 }
+
+func WxJson(r *ghttp.Request, res interface{} , data ...interface{}) {
+	r.Response.WriteJson(res)
+}
