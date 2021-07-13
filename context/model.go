@@ -29,6 +29,7 @@ type ContextAgent struct {
 	Lng float64
 	Channel string
 	Version string
+	PlatForm string
 }
 
 // 数据返回通用JSON数据结构
