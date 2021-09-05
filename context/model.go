@@ -18,7 +18,7 @@ type ContextM struct {
 	Data   map[string]interface{} `json:"data"`
 	Res    interface{}            `json:"res"`
 	Time   int64                  `json:"time"` // 请求耗时
-	Extra  interface{}            `json:"extra"`
+	Extra  interface{}            `json:"extra,omitempty"`
 }
 
 // 请求上下文中的用户信息
