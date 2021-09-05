@@ -70,3 +70,14 @@ func (s *contextService) AddContextData(ctx context.Context, key string, add int
 	addmap[key] = add
 	s.Get(ctx).Data = addmap
 }
+// SetExtra 设置额外信息用于埋点
+func (s *contextService) SetExtra(ctx context.Context, extra interface{}) {
+	s.Get(ctx).Extra = extra
+}
+
+// AddExtraData 向Extra中添加信息
+func (s *contextService) AddExtraData(ctx context.Context, key string, value interface{})  {
+	extra := gconv.Map(s.Get(ctx).Extra)
+	extra[key] = value
+	s.Get(ctx).Extra = extra
+}
