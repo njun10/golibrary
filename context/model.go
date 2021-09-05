@@ -39,5 +39,4 @@ type Response struct {
 	Message string      `json:"message"` // 提示信息
 	Data    interface{} `json:"data"`    // 返回数据(业务接口定义具体数据结构)
 	LogId   string      `json:"log_id"`
-	Extra   interface{} `json:"extra"`
 }
