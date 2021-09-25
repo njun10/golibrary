@@ -21,6 +21,7 @@ func (s *contextService) Init(r *ghttp.Request) {
 	c.Data = make(map[string]interface{})
 	c.Data["start"] = time.Now()
 	r.ParseQuery(&c.Agent)
+	c.Agent.RemoteIp = r.GetRemoteIp()
 	r.SetCtxVar(ContextKey, c)
 }
 

@@ -31,6 +31,7 @@ type ContextAgent struct {
 	Channel  string
 	Version  string
 	PlatForm string
+	RemoteIp string
 }
 
 // 数据返回通用JSON数据结构
