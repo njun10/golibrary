@@ -62,6 +62,13 @@ func (s *HttpRpcInput) Request(r *ghttp.Request) string {
 			log.Res = client.PutContent(s.Url)
 		}
 		break
+	case "DELETE":
+		if s.Data != nil {
+			log.Res = client.DeleteContent(s.Url, s.Data)
+		} else {
+			log.Res = client.DeleteContent(s.Url)
+		}
+		break
 	default:
 
 	}
