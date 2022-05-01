@@ -24,6 +24,7 @@ type ContextM struct {
 // 请求上下文中的用户信息
 type ContextAgent struct {
 	AgentId  int64
+	OrgId    int64
 	PlatId   int
 	Uid      int64
 	Lat      float64
