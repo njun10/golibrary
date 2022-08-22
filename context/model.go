@@ -19,6 +19,7 @@ type ContextM struct {
 	Res    interface{}            `json:"res"`
 	Time   int64                  `json:"time"` // 请求耗时
 	Extra  interface{}            `json:"extra,omitempty"`
+	Response Response `json:"response"`
 }
 
 // 请求上下文中的用户信息
@@ -33,6 +34,11 @@ type ContextAgent struct {
 	Version  string
 	PlatForm string
 	RemoteIp string
+	StChannel1 string `json:"st_channel_1"`
+	StChannel2 string `json:"st_channel_2"`
+	StChannel3 string `json:"st_channel_3"`
+	StType string `json:"st_type"`
+	StId string `json:"st_id"`
 }
 
 // 数据返回通用JSON数据结构
@@ -41,4 +47,10 @@ type Response struct {
 	Message string      `json:"message"` // 提示信息
 	Data    interface{} `json:"data"`    // 返回数据(业务接口定义具体数据结构)
 	LogId   string      `json:"log_id"`
+	StChannel1 string `json:"st_channel_1"`
+	StChannel2 string `json:"st_channel_2"`
+	StChannel3 string `json:"st_channel_3"`
+	StType string `json:"st_type"`
+	StId string `json:"st_id"`
+	StChange bool `json:"st_change"`
 }

@@ -22,6 +22,11 @@ func (s *contextService) Init(r *ghttp.Request) {
 	c.Data["start"] = time.Now()
 	r.ParseQuery(&c.Agent)
 	c.Agent.RemoteIp = r.GetClientIp()
+	c.Response.StChannel1 = c.Agent.StChannel1
+	c.Response.StChannel2 = c.Agent.StChannel2
+	c.Response.StChannel3 = c.Agent.StChannel3
+	c.Response.StType = c.Agent.StType
+	c.Response.StId = c.Agent.StId
 	r.SetCtxVar(ContextKey, c)
 }
 
@@ -56,6 +61,11 @@ func (s *contextService) SetParams(ctx context.Context, params interface{}) {
 // 将返回的data加入上下文中
 func (s *contextService) SetResData(ctx context.Context, data interface{}) {
 	s.Get(ctx).Res = data
+}
+
+// 将返回的data加入上下文中
+func (s *contextService) SetRes2Data(ctx context.Context, data Response) {
+	s.Get(ctx).Response = data
 }
 
 // 向返回的data加入上下文中 添加数据
