@@ -54,4 +54,7 @@ type Response struct {
 	StId string `json:"st_id"`
 	StChange bool `json:"st_change"`
 	PlatId int `json:"plat_id"`
+	Version string `json:"version"`
+	Channel string `json:"channel"`
+	PlatForm string `json:"plat_form"`
 }

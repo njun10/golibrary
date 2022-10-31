@@ -28,6 +28,9 @@ func (s *contextService) Init(r *ghttp.Request) {
 	c.Response.StType = c.Agent.StType
 	c.Response.StId = c.Agent.StId
 	c.Response.PlatId = c.Agent.PlatId
+	c.Response.Version = c.Agent.Version
+	c.Response.Channel = c.Agent.Channel
+	c.Response.PlatForm = c.Agent.PlatForm
 	r.SetCtxVar(ContextKey, c)
 }
 

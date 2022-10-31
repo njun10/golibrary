@@ -31,6 +31,9 @@ func Json(r *ghttp.Request, code int, message string, data ...interface{}) {
 		StType: response.StType,
 		StId: response.StId,
 		PlatId: response.PlatId,
+		Version: response.Version,
+		Channel: response.Channel,
+		PlatForm: response.PlatForm,
 	})
 	context.ContextSer.SetErrMsg(r.Context(), code, message)
 }
