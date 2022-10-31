@@ -30,6 +30,7 @@ func Json(r *ghttp.Request, code int, message string, data ...interface{}) {
 		StChannel3: response.StChannel3,
 		StType: response.StType,
 		StId: response.StId,
+		PlatId: response.PlatId,
 	})
 	context.ContextSer.SetErrMsg(r.Context(), code, message)
 }

@@ -53,4 +53,5 @@ type Response struct {
 	StType string `json:"st_type"`
 	StId string `json:"st_id"`
 	StChange bool `json:"st_change"`
+	PlatId int `json:"plat_id"`
 }
