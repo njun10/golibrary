@@ -3,8 +3,8 @@ package rpc
 import (
 	"github.com/gogf/gf/frame/g"
 	"github.com/gogf/gf/net/ghttp"
-	"time"
 	"github.com/njun10/golibrary/logs"
+	"time"
 )
 
 // 标准返回结果数据结构封装。
@@ -53,6 +53,15 @@ func (s *HttpRpcInput) Request(r *ghttp.Request) string {
 			log.Res = client.GetContent(s.Url, s.Data)
 		} else {
 			log.Res = client.GetContent(s.Url)
+		}
+
+		break
+	case "GET_HEADER":
+		client.RedirectLimit(0)
+		if Res,err := client.Get(s.Url);err==nil{
+			if l,e := Res.Location();e==nil {
+				log.Res = l.String()
+			}
 		}
 		break
 	case "PUT":
