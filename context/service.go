@@ -21,7 +21,7 @@ func (s *contextService) Init(r *ghttp.Request) {
 	c.Data = make(map[string]interface{})
 	c.Data["start"] = time.Now()
 	r.ParseQuery(&c.Agent)
-	c.Agent.RemoteIp = r.Header.Get("X-Forwarded-For")
+	c.Agent.RemoteIp = r.Header.Get("X-Real-Ip")
 	c.Response.StChannel1 = c.Agent.StChannel1
 	c.Response.StChannel2 = c.Agent.StChannel2
 	c.Response.StChannel3 = c.Agent.StChannel3
@@ -32,7 +32,10 @@ func (s *contextService) Init(r *ghttp.Request) {
 	c.Response.Channel = c.Agent.Channel
 	c.Response.PlatForm = c.Agent.PlatForm
 	if len(c.Agent.RemoteIp) == 0 {
-		c.Agent.RemoteIp = "127.0.0.1"
+		c.Agent.RemoteIp = r.Header.Get("X-Forwarded-For")
+	}
+	if len(c.Agent.RemoteIp) == 0 {
+		c.Agent.RemoteIp = r.GetRemoteIp()
 	}
 	r.SetCtxVar(ContextKey, c)
 }
