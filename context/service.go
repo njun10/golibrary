@@ -21,7 +21,7 @@ func (s *contextService) Init(r *ghttp.Request) {
 	c.Data = make(map[string]interface{})
 	c.Data["start"] = time.Now()
 	r.ParseQuery(&c.Agent)
-	c.Agent.RemoteIp = r.GetClientIp()
+	c.Agent.RemoteIp = r.Header.Get("X-Forwarded-For")
 	c.Response.StChannel1 = c.Agent.StChannel1
 	c.Response.StChannel2 = c.Agent.StChannel2
 	c.Response.StChannel3 = c.Agent.StChannel3
@@ -85,13 +85,14 @@ func (s *contextService) AddContextData(ctx context.Context, key string, add int
 	addmap[key] = add
 	s.Get(ctx).Data = addmap
 }
+
 // SetExtra 设置额外信息用于埋点
 func (s *contextService) SetExtra(ctx context.Context, extra interface{}) {
 	s.Get(ctx).Extra = extra
 }
 
 // AddExtraData 向Extra中添加信息
-func (s *contextService) AddExtraData(ctx context.Context, key string, value interface{})  {
+func (s *contextService) AddExtraData(ctx context.Context, key string, value interface{}) {
 	extra := gconv.Map(s.Get(ctx).Extra)
 	extra[key] = value
 	s.Get(ctx).Extra = extra
