@@ -3,8 +3,8 @@ package rpc
 import (
 	"github.com/gogf/gf/frame/g"
 	"github.com/gogf/gf/net/ghttp"
-	"time"
 	"github.com/njun10/golibrary/logs"
+	"time"
 )
 
 // 标准返回结果数据结构封装。
@@ -25,6 +25,7 @@ func (s *HttpRpcInput) Request(r *ghttp.Request) string {
 	}
 
 	// set header
+	s.Header["LogId"] = r.GetCtxVar(logs.Id).String()
 	if len(s.Header) > 0 {
 		client = client.Header(s.Header)
 	}

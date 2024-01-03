@@ -32,7 +32,12 @@ func (b *Base) Index(r *ghttp.Request) {
 
 // 初始化通用上下文信息
 func (b *Base) Context(r *ghttp.Request) {
-	r.SetCtxVar(logs.Id, logs.GenLogid())
+	var logId = r.Header.Get("LogId")
+	if len(logId) > 0 {
+		r.SetCtxVar(logs.Id, logId)
+	} else {
+		r.SetCtxVar(logs.Id, logs.GenLogid())
+	}
 	context.ContextSer.Init(r)
 	agent := new(context.ContextAgent)
 	if err := r.ParseForm(&agent); err != nil {
