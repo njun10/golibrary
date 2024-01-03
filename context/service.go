@@ -31,6 +31,9 @@ func (s *contextService) Init(r *ghttp.Request) {
 	c.Response.Version = c.Agent.Version
 	c.Response.Channel = c.Agent.Channel
 	c.Response.PlatForm = c.Agent.PlatForm
+	if len(c.Agent.RemoteIp) == 0 {
+		c.Agent.RemoteIp = "127.0.0.1"
+	}
 	r.SetCtxVar(ContextKey, c)
 }
 
