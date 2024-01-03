@@ -55,6 +55,14 @@ func (s *HttpRpcInput) Request(r *ghttp.Request) string {
 		} else {
 			log.Res = client.GetContent(s.Url)
 		}
+
+		break
+	case "GET_HEADER":
+		if Res,err := client.RedirectLimit(0).Get(s.Url);err==nil {
+			if l,e := Res.Location();e==nil {
+				log.Res = l.String()
+			}
+		}
 		break
 	case "PUT":
 		if s.Data != nil {
